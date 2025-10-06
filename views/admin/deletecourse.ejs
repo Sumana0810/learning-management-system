@@ -1,0 +1,27 @@
+<%- include("partial/header") %>
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="height: 90vh;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete Course</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 class="text-danger">Are you sure you want to delete this course?</h4>
+                    
+                    <p><strong>Name:</strong> <%= course.name %></p>
+                <p><strong>Description:</strong> <%= course.description %></p>
+                <p><strong>Price:</strong> <%= course.price %></p>
+                <p><strong>Image:</strong><img src="/images/course/<%= course.image %>" width="100px" height="100px" alt=""></p>
+
+                    <form action="/admin/deletecourse/<%= course._id %>" method="post">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        <a class="btn btn-secondary" href="/admin/allcourse">No, Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("partial/footer") %>

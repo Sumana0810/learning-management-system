@@ -1,0 +1,44 @@
+<%- include("partial/header") %>
+
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="height: 90vh;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>CreatedAt</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(course && course.length > 0){ %>
+                    <% for(var i = 0; i < course.length; i++){ %>
+                        <tr>
+                            <td><%= course[i].name %></td>
+                            <td><%= course[i].description %></td>
+                            <td><%= course[i].price %></td>
+                            <td scope="row">
+                                <img src="/images/course/<%= course[i].image %>" width="100" height="100"></td>
+                            <td><%= course[i].createdAt ? new Date(course[i].createdAt).toLocaleDateString() : '-' %></td>
+
+                            <td>
+                                <a href="/admin/editcourse/<%= course[i]._id %>" class="btn btn-primary">Edit</a>
+                                <a href="/admin/deletecourse/<%= course[i]._id %>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href="/admin/viewcourse/<%= course[i]._id %>" class="btn btn-warning">View</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8" style="text-align:center; color: #778da9;">No courses found</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include("partial/footer") %>

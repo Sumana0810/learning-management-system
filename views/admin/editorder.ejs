@@ -1,0 +1,43 @@
+<%- include("partial/header") %>
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="min-height: 90vh; padding: 2rem;">
+        <h2 class="mb-4" style="color: #96b7e2;">Edit Order</h2>
+        <form action="/admin/editorder/<%= order._id %>" method="POST">
+            <div class="mb-3">
+                <label>Student</label>
+                <select name="userid" class="form-control">
+                    <% students.forEach(s => { %>
+                        <option value="<%= s._id %>" <%= s._id.equals(order.userid) ? "selected" : "" %>><%= s.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Course</label>
+                <select name="courseid" class="form-control">
+                    <% courses.forEach(c => { %>
+                        <option value="<%= c._id %>" <%= c._id.equals(order.courseid) ? "selected" : "" %>><%= c.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Total Fee</label>
+                <input type="text" name="tfee" value="<%= order.tfee %>" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label>Paid Fee</label>
+                <input type="text" name="pfee" value="<%= order.pfee %>" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label>Status</label>
+                <select name="status" class="form-control">
+                    <option value="1" <%= order.status === "1" ? "selected" : "" %>>Active</option>
+                    <option value="0" <%= order.status === "0" ? "selected" : "" %>>Inactive</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Update Order</button>
+            <a href="/admin/allorder" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+<%- include("partial/footer") %>

@@ -1,0 +1,16 @@
+<%- include("partial/header") %>
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="min-height: 90vh; padding: 2rem;">
+        <h2 class="mb-4" style="color: #96b7e2;">View Order</h2>
+        <table class="table table-dark">
+            <tr><th>Student Name</th><td><%= studentName %></td></tr>
+            <tr><th>Course Name</th><td><%= courseName %></td></tr>
+            <tr><th>Total Fee</th><td><%= order.tfee %></td></tr>
+            <tr><th>Paid Fee</th><td><%= order.pfee %></td></tr>
+            <tr><th>Status</th><td><%= order.status === "1" ? "Active" : "Inactive" %></td></tr>
+        </table>
+        <a href="/admin/allorder" class="btn btn-primary">Back</a>
+    </div>
+</div>
+<%- include("partial/footer") %>

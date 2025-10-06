@@ -1,0 +1,46 @@
+<%- include("partial/header") %>
+
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="height: 90vh;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Nationality</th>
+                    <th>CreatedAt</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(student && student.length > 0){ %>
+                    <% for(var i = 0; i < student.length; i++){ %>
+                        <tr>
+                            <td><%= student[i].name %></td>
+                            <td><%= student[i].email %></td>
+                            <td><%= student[i].phone %></td>
+                            <td><%= student[i].age %></td>
+                            <td><%= student[i].gender %></td>
+                            <td><%= student[i].nationality %></td>
+                            <td><%= student[i].createdAt ? new Date(student[i].createdAt).toLocaleDateString() : '-' %></td>
+                            <td>
+                                <a href="/admin/editstudent/<%= student[i]._id %>" class="btn btn-primary">Edit</a>
+                                <a href="/admin/deletestudent/<%= student[i]._id %>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href="/admin/viewstudent/<%= student[i]._id %>" class="btn btn-warning">View</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8" style="text-align:center; color: #778da9;">No students found</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include("partial/footer") %>

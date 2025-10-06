@@ -1,0 +1,13 @@
+<%- include("partial/header") %>
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="min-height: 90vh; padding: 2rem;">
+        <h2 class="mb-4" style="color: #e26969;">Delete Order</h2>
+        <p>Are you sure you want to delete the order of <strong><%= order.studentName %></strong> for <strong><%= order.courseName %></strong>?</p>
+        <form action="/admin/deleteorder/<%= order._id %>" method="POST">
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="/admin/allorder" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+<%- include("partial/footer") %>

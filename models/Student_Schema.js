@@ -1,0 +1,29 @@
+const mongoose=require("mongoose");
+const Student_Schema=new mongoose.Schema({
+    name:{
+        type:String
+    },
+    email:{
+        type:String
+    },
+    phone:{
+        type:String
+    },
+    password:{
+        type:String
+    },
+    age:{
+        type:String
+    },
+    gender:{
+        type:String
+    },
+    nationality:{
+        type:String
+    }
+},
+{
+    timestamps:true,
+    collection:"student"
+});
+module.exports=mongoose.model("student",Student_Schema);

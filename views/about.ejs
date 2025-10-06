@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About | Sumana's Learning Hub</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #0a1930;
+            --darker-bg: #071121;
+            --dark-card: #112240;
+            --blue-primary: #1e90ff;
+            --blue-secondary: #4cc9f0;
+            --blue-accent: #4361ee;
+            --text-light: #ccd6f6;
+            --text-lighter: #e6f1ff;
+            --text-muted: #8892b0;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-lighter);
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            padding: 0.8rem 1rem;
+            background-color: var(--darker-bg) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 4px;
+            margin: 0 0.2rem;
+            transition: all 0.3s ease;
+            color: var(--text-light) !important;
+        }
+        
+        .nav-link:hover {
+            color: var(--blue-primary) !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--blue-primary) !important;
+            background: rgba(30, 144, 255, 0.1);
+        }
+        
+        .btn-outline-light {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--blue-primary);
+            color: var(--darker-bg);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='%231e90ff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(30, 144, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark-card) 0%, var(--darker-bg) 100%);
+            padding: 5rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+        }
+        
+        .team-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(30, 144, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.3);
+        }
+        
+        .team-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        
+        .team-social a {
+            color: var(--text-light);
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            color: var(--blue-primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Testimonial Section */
+        .testimonial-section {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            padding: 5rem 0;
+        }
+        
+        .testimonial-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem;
+            border: 1px solid rgba(30, 144, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonial-text {
+            position: relative;
+            padding-left: 2rem;
+            font-style: italic;
+        }
+        
+        .testimonial-text::before {
+            position: absolute;
+            left: 0;
+            top: -1rem;
+            font-size: 4rem;
+            color: var(--blue-primary);
+            font-family: Arial, sans-serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid var(--blue-primary);
+        }
+        
+        /* Footer Styling */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 2rem 0 !important;
+            border-top: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        /* Progress bars */
+        .progress {
+            background-color: var(--darker-bg);
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-bolt me-2"></i>Sumana's Learning Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin">Admin Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Search" style="background-color: var(--dark-card); border-color: rgba(30, 144, 255, 0.2); color: var(--text-light);">
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center animate-fadein">
+                    <h1 class="display-4 fw-bold mb-4">About Our Learning Platform</h1>
+                    <p class="lead mx-auto" style="max-width: 700px;">
+                        Our Learning Management System is designed to make learning simple, engaging, and accessible 
+                        for everyone. We provide a platform that adapts to your needs and transforms education through innovation.
+                    </p>
+                    <div class="mt-5">
+                        <a href="#features" class="btn btn-primary me-3" style="background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%); border: none; padding: 0.8rem 2rem;">
+                            <i class="fas fa-star me-2"></i>Explore Features
+                        </a>
+                        <a href="/contact" class="btn btn-outline-light">
+                            <i class="fas fa-phone me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number" data-count="10000">0</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number" data-count="350">0</div>
+                    <div class="stat-label">Expert Instructors</div>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number" data-count="120">0</div>
+                    <div class="stat-label">Courses Offered</div>
+                </div>
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-number" data-count="95">0</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3">Why Choose Our Platform?</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">
+                    We provide cutting-edge tools and features that enhance the learning experience for students and educators alike.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Interactive Learning</h3>
+                        <p>
+                            Engage with immersive content, interactive quizzes, and real-time feedback to enhance your learning experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Progress Analytics</h3>
+                        <p>
+                            Track your learning journey with detailed analytics and personalized insights to optimize your progress.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Mobile Access</h3>
+                        <p>
+                            Learn on the go with our fully responsive platform that works seamlessly across all devices.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Certification</h3>
+                        <p>
+                            Earn recognized certificates upon course completion to boost your career prospects.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Community Learning</h3>
+                        <p>
+                            Connect with peers, join discussion forums, and collaborate on projects with our community features.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-fadein">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Fast Performance</h3>
+                        <p>
+                            Experience lightning-fast page loads and smooth navigation with our optimized platform.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section bg-dark">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3">Meet Our Team</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">
+                    Our dedicated team of experts is committed to providing the best learning experience.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Team Member" class="team-img">
+                        <div class="p-4">
+                            <h4 class="fw-bold">Alex Johnson</h4>
+                            <p class="text-primary mb-3">Founder & CEO</p>
+                            <p>Education technology enthusiast with 10+ years of experience in digital learning solutions.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+                                <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#"><i class="fas fa-envelope fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Team Member" class="team-img">
+                        <div class="p-4">
+                            <h4 class="fw-bold">Sarah Williams</h4>
+                            <p class="text-primary mb-3">Head of Education</p>
+                            <p>Curriculum development expert with a passion for creating engaging learning experiences.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+                                <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+                                <a href="#"><i class="fas fa-envelope fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Team Member" class="team-img">
+                        <div class="p-4">
+                            <h4 class="fw-bold">Michael Chen</h4>
+                            <p class="text-primary mb-3">Tech Lead</p>
+                            <p>Full-stack developer specializing in creating scalable educational platforms.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+                                <a href="#"><i class="fab fa-github fa-lg"></i></a>
+                                <a href="#"><i class="fas fa-envelope fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3">What Our Students Say</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">
+                    Hear from our students about their learning experience with our platform.
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            This platform transformed my learning experience. The courses are well-structured, and the instructors are incredibly supportive.
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Student" class="testimonial-avatar">
+                            <div>
+                                <h5 class="mb-0">Priya Sharma</h5>
+                                <small class="text-muted">Data Science Student</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">
+                            The mobile accessibility allowed me to learn during my commute. I've already recommended it to all my friends!
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Student" class="testimonial-avatar">
+                            <div>
+                                <h5 class="mb-0">Rahul Kapoor</h5>
+                                <small class="text-muted">Web Development Student</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <% if (typeof message !== "undefined" && message) { %>
+            <div class="alert alert-info alert-dismissible fade show text-center w-75 mx-auto mb-4" role="alert">
+                <strong><%= message %></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+            
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Sumana's Learning Hub</h5>
+                    <p class="mb-0">Empowering students with quality education and skills for the future.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your Email" style="background-color: var(--dark-card); border-color: rgba(30, 144, 255, 0.2); color: var(--text-light);">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
+            <p class="mb-0">&copy; <%= new Date().getFullYear() %> Sumana's Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Animate stats counter
+        document.addEventListener('DOMContentLoaded', function() {
+            const statElements = document.querySelectorAll('.stat-number');
+            const duration = 2000; // Animation duration in ms
+            const interval = 50; // Update interval in ms
+            
+            statElements.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const steps = duration / interval;
+                const increment = target / steps;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.round(current);
+                    }
+                }, interval);
+            });
+            
+            // Animate elements on scroll
+            const animatedElements = document.querySelectorAll('.feature-card, .team-card, .testimonial-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

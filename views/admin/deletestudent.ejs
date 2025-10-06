@@ -1,0 +1,29 @@
+<%- include("partial/header") %>
+<div class="row">
+    <%- include("partial/sidebar") %>
+    <div class="col-lg-9" style="height: 90vh;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Delete Student</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 class="text-danger">Are you sure you want to delete this student?</h4>
+                    
+                    <p><strong>Name:</strong> <%= student.name %></p>
+                    <p><strong>Email:</strong> <%= student.email %></p>
+                    <p><strong>Phone:</strong> <%= student.phone %></p>
+                    <p><strong>Age:</strong> <%= student.age %></p>
+                    <p><strong>Gender:</strong> <%= student.gender %></p>
+                    <p><strong>Nationality:</strong> <%= student.nationality %></p>
+
+                    <form action="/admin/deletestudent/<%= student._id %>" method="post">
+                        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                        <a class="btn btn-secondary" href="/admin/allstudent">No, Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("partial/footer") %>

@@ -1,0 +1,21 @@
+<%- include("partial/header")%>
+<div class="row">
+    <%- include("partial/sidebar")%>
+    <div class="col-lg-9" style="height: 90vh;">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">View Course Details</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> <%= course.name %></p>
+                <p><strong>Description:</strong> <%= course.description %></p>
+                <p><strong>Price:</strong> <%= course.price %></p>
+                <p><strong>Image:</strong><img src="/images/course/<%= course.image %>" width="100px" height="100px" alt=""></p>
+
+
+                <a class="btn btn-primary" href="/admin/allcourse" role="button">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("partial/footer")%>

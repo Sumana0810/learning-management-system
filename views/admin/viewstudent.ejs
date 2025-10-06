@@ -1,0 +1,23 @@
+<%- include("partial/header")%>
+<div class="row">
+    <%- include("partial/sidebar")%>
+    <div class="col-lg-9" style="height: 90vh;">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">View Student Details</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> <%= student.name %></p>
+                <p><strong>Email:</strong> <%= student.email %></p>
+                <p><strong>Phone:</strong> <%= student.phone %></p>
+                <p><strong>Password:</strong> <%= student.password %></p>
+                <p><strong>Age:</strong> <%= student.age %></p>
+                <p><strong>Gender:</strong> <%= student.gender %></p>
+                <p><strong>Nationality:</strong> <%= student.nationality %></p>
+
+                <a class="btn btn-primary" href="/admin/allstudent" role="button">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("partial/footer")%>

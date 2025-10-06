@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Cyber Admin Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0d0f1a;
+            --secondary-dark: #131625;
+            --accent: #00f3ff;
+            --accent-alt: #ff00d6;
+            --accent-light: #90e0ef;
+            --text-primary: #e0e6ed;
+            --text-secondary: #8b93b6;
+            --success: #4cc9f0;
+            --warning: #f9c74f;
+            --danger: #ff2a6d;
+            --cyber-blue: #00f3ff;
+            --cyber-pink: #ff00d6;
+            --cyber-purple: #7700ff;
+        }
+
+        body {
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(119, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(255, 0, 214, 0.1) 0%, transparent 20%),
+                linear-gradient(to bottom, rgba(13, 15, 26, 0.9), rgba(19, 22, 37, 0.9));
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Cyber Fonts */
+        h1, h2, h3, h4, h5, .navbar-brand, .card-title {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cyber-purple);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--secondary-dark) !important;
+            border-bottom: 1px solid var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            padding: 0.8rem 1rem;
+        }
+
+        .navbar-brand {
+            color: var(--cyber-blue) !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            color: var(--cyber-blue) !important;
+            text-shadow: 0 0 8px var(--cyber-blue);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-menu {
+            background: var(--secondary-dark);
+            border-radius: 5px;
+            border: 1px solid var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            padding: 0.5rem;
+        }
+
+        .dropdown-item {
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            margin: 0.2rem 0;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: var(--cyber-blue);
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--secondary-dark);
+            border-radius: 5px;
+            padding: 20px;
+            height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            position: relative;
+            border: 1px solid var(--cyber-blue);
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--cyber-blue), var(--cyber-pink));
+            border-radius: 0 5px 5px 0;
+        }
+
+        .sidebar h5 {
+            color: var(--cyber-blue);
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 5px var(--cyber-blue);
+        }
+
+        .sidebar h5 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            color: var(--text-primary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--cyber-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar a i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+            color: var(--cyber-blue);
+        }
+
+        .sidebar a:hover {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--cyber-blue);
+            transform: translateX(8px);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        .sidebar a:hover::before {
+            opacity: 1;
+        }
+
+        /* Dashboard Cards */
+        .card.h-100 {
+            background: var(--secondary-dark);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card.h-100::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-pink));
+        }
+
+        .card.h-100:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: contain;
+            padding: 20px;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 0 5px var(--cyber-blue));
+        }
+
+        .card.h-100:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .card-title {
+            color: var(--cyber-blue);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px var(--cyber-blue);
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Stats Badge */
+        .stats-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-dark);
+            color: var(--cyber-blue);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            border: 1px solid var(--cyber-blue);
+            text-shadow: 0 0 5px var(--cyber-blue);
+        }
+
+        /* Alert Message */
+        .alert {
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 0 20px rgba(255, 0, 214, 0.3);
+            background: linear-gradient(45deg, var(--secondary-dark), var(--primary-dark));
+            color: var(--cyber-pink);
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 350px;
+            animation: slideIn 0.5s ease-out;
+            border: 1px solid var(--cyber-pink);
+            text-shadow: 0 0 5px var(--cyber-pink);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .alert .close {
+            color: var(--cyber-pink);
+            opacity: 0.8;
+            text-shadow: 0 0 5px var(--cyber-pink);
+        }
+
+        /* Content Area */
+        .main-content {
+            padding: 0 15px;
+        }
+
+        .section-title {
+            color: var(--cyber-blue);
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            display: flex;
+            align-items: center;
+            text-shadow: 0 0 5px var(--cyber-blue);
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        /* Cyber Elements */
+        .cyber-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .cyber-line::before,
+        .cyber-line::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            top: -4px;
+            box-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .cyber-line::before {
+            left: 0;
+        }
+
+        .cyber-line::after {
+            right: 0;
+        }
+
+        .cyber-box {
+            border: 1px solid var(--cyber-blue);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: rgba(19, 22, 37, 0.7);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--cyber-blue);
+            box-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        /* Glowing Text */
+        .glow-text {
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                height: auto;
+                margin-bottom: 20px;
+            }
+            
+            .card.h-100 {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Cyber Button */
+        .cyber-button {
+            background: transparent;
+            color: var(--cyber-blue);
+            border: 1px solid var(--cyber-blue);
+            border-radius: 4px;
+            padding: 8px 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--cyber-blue);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+
+        .cyber-button:hover {
+            background: var(--cyber-blue);
+            color: var(--primary-dark);
+            box-shadow: 0 0 20px var(--cyber-blue);
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <a class="navbar-brand font-weight-bold animate-left" href="#">
+            <i class="fas fa-bolt mr-2"></i>Sumana's Learning Hub
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <span class="mr-auto"></span>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="dropdownId" data-toggle="dropdown">
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=00f3ff&color=0d0f1a" class="rounded-circle mr-2" width="30" height="30" alt="Admin">
+                        <span class="glow-text">Sumana</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="/admin/editprofile"><i class="fas fa-user-edit mr-2"></i>Edit Profile</a>
+                        <a class="dropdown-item" href="/admin/changepassword"><i class="fas fa-key mr-2"></i>Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/logout"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <h5><i class="fas fa-th-large"></i>Dashboard</h5>
+                    <a href="/admin"><i class="fas fa-home"></i>Home</a>
+                    
+                    <div class="cyber-line"></div>
+                    
+                    <h5><i class="fas fa-user-graduate"></i>Student</h5>
+                    <a href="/admin/addstudent"><i class="fas fa-plus-circle"></i>Add Student</a>
+                    <a href="/admin/allstudent"><i class="fas fa-users"></i>All Students</a>
+                    
+                    <div class="cyber-line"></div>
+                    
+                    <h5><i class="fas fa-book"></i>Course</h5>
+                    <a href="/admin/addcourse"><i class="fas fa-plus-circle"></i>Add Course</a>
+                    <a href="/admin/allcourse"><i class="fas fa-list"></i>All Courses</a>
+                    
+                    <div class="cyber-line"></div>
+                    
+                    <h5><i class="fas fa-shopping-cart"></i>Order</h5>
+                    <a href="/admin/addorder"><i class="fas fa-plus-circle"></i>Add Order</a>
+                    <a href="/admin/allorder"><i class="fas fa-receipt"></i>All Orders</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 main-content">
+                <h3 class="section-title"><i class="fas fa-tachometer-alt"></i>SYSTEM OVERVIEW</h3>
+                
+                <div class="row">
+                    <!-- Student Card -->
+                    <div class="col-xl-3 col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="stats-badge">
+                                0
+                            </div>
+                            <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Students</h4>
+                                <p class="card-text">Total Registered</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Card -->
+                    <div class="col-xl-3 col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="stats-badge">
+                                0
+                            </div>
+                            <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/2942/2942789.png" alt="Course">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Courses</h4>
+                                <p class="card-text">Available</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Card -->
+                    <div class="col-xl-3 col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="stats-badge">
+                                0
+                            </div>
+                            <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Order">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Orders</h4>
+                                <p class="card-text">Processed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Revenue Card -->
+                    <div class="col-xl-3 col-lg-6 mb-4">
+                        <div class="card h-100">
+                            <div class="stats-badge">
+                                $0
+                            </div>
+                            <img class="card-img-top" src="https://cdn-icons-png.flaticon.com/512/3477/3477992.png" alt="Revenue">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Revenue</h4>
+                                <p class="card-text">Total</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cyber Line -->
+                <div class="cyber-line mt-4 mb-4"></div>
+                
+                <!-- Recent Activity Section -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h3 class="section-title"><i class="fas fa-history"></i>RECENT ACTIVITY</h3>
+                        <div class="cyber-box">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0 glow-text" style="color: var(--cyber-blue);">SYSTEM LOGS</h5>
+                                <button class="cyber-button">EXPORT DATA</button>
+                            </div>
+                            <p class="text-center text-muted py-5">No recent activity to display</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert Message -->
+        <% if (typeof message !== "undefined" && message) { %>
+        <div class="alert alert-danger alert-dismissible fade show shadow" role="alert">
+            <strong><i class="fas fa-exclamation-circle mr-2"></i><%= message %></strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Auto-close alert after 3 seconds
+            setTimeout(function(){
+                $(".alert").alert("close");
+            }, 3000);
+            
+            // Add animation to cards on page load
+            $(".card").each(function(index) {
+                $(this).delay(100 * index).animate({
+                    opacity: 1,
+                    top: 0
+                }, 500);
+            });
+            
+            // Add cyber glitch effect on hover for navbar brand
+            $('.navbar-brand').hover(function() {
+                $(this).css('text-shadow', '0 0 15px var(--cyber-blue), 2px 2px 0 var(--cyber-pink)');
+            }, function() {
+                $(this).css('text-shadow', '0 0 10px var(--cyber-blue)');
+            });
+        });
+    </script>
+</body>
+</html>

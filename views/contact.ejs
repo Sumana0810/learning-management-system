@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact | Sumana's Learning Hub</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #0a1930;
+            --darker-bg: #071121;
+            --dark-card: #112240;
+            --blue-primary: #1e90ff;
+            --blue-secondary: #4cc9f0;
+            --blue-accent: #4361ee;
+            --text-light: #ccd6f6;
+            --text-lighter: #e6f1ff;
+            --text-muted: #8892b0;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-lighter);
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            padding: 0.8rem 1rem;
+            background-color: var(--darker-bg) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 4px;
+            margin: 0 0.2rem;
+            transition: all 0.3s ease;
+            color: var(--text-light) !important;
+        }
+        
+        .nav-link:hover {
+            color: var(--blue-primary) !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--blue-primary) !important;
+            background: rgba(30, 144, 255, 0.1);
+        }
+        
+        .btn-outline-light {
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+        
+        .btn-outline-light:hover {
+            background-color: var(--blue-primary);
+            color: var(--darker-bg);
+        }
+        
+        /* Contact Form Styling */
+        .contact-form {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        .contact-form .form-control {
+            background-color: rgba(7, 17, 33, 0.5);
+            border: 1px solid rgba(30, 144, 255, 0.2);
+            color: var(--text-light);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .form-control:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.25);
+            background-color: rgba(7, 17, 33, 0.7);
+        }
+        
+        .contact-form label {
+            color: var(--text-lighter);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-form .btn-primary {
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%);
+            border: none;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+        }
+        
+        /* Contact Info Cards */
+        .contact-info-card {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(30, 144, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.3);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--blue-primary);
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Map Styling */
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        /* FAQ Section */
+        .accordion-item {
+            background-color: var(--dark-card);
+            border: 1px solid rgba(30, 144, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .accordion-button {
+            background-color: var(--dark-card);
+            color: var(--text-lighter);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(30, 144, 255, 0.1);
+            color: var(--blue-primary);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(30, 144, 255, 0.3);
+        }
+        
+        .accordion-body {
+            color: var(--text-light);
+            background-color: var(--darker-bg);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Footer Styling */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 2rem 0 !important;
+            margin-top: 4rem !important;
+            border-top: 1px solid rgba(30, 144, 255, 0.1);
+        }
+        
+        /* Alert Styling */
+        .alert {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-accent) 100%);
+            color: white;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadein {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-bolt me-2"></i>Sumana's Learning Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin">Admin Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Search" style="background-color: var(--dark-card); border-color: rgba(30, 144, 255, 0.2); color: var(--text-light);">
+                    <button class="btn btn-outline-light" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Content -->
+    <div class="container my-5 animate-fadein">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold mb-3">Get In Touch With Us</h1>
+            <p class="lead mx-auto" style="max-width: 600px;">
+                Have questions, feedback, or want to work with us? We'd love to hear from you. 
+                Send us a message and we'll respond as soon as possible.
+            </p>
+        </div>
+        
+        <div class="row g-5">
+            <!-- Contact Form -->
+            <div class="col-lg-7">
+                <div class="contact-form">
+                    <h3 class="mb-4">Send us a Message</h3>
+                    <form action="/contact" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="What is this regarding?" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Message</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-5">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="col-lg-5">
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-12">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h5>Our Location</h5>
+                            <p class="mb-0">123 Education Street</p>
+                            <p>Bangalore, India 560001</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-12">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h5>Phone Number</h5>
+                            <p class="mb-2">+91 98765 43210</p>
+                            <p class="mb-0">+91 91234 56789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-12">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h5>Email Address</h5>
+                            <p class="mb-2">info@sumanashub.com</p>
+                            <p class="mb-0">support@sumanashub.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-12">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h5>Working Hours</h5>
+                            <p class="mb-2">Mon - Fri: 9AM - 6PM</p>
+                            <p class="mb-0">Sat: 10AM - 2PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4 text-center">Find Us Here</h3>
+                <div class="map-container">
+                    <div class="ratio ratio-21x9">
+                        <!-- Embedded Google Map (placeholder) -->
+                        <div style="background: linear-gradient(135deg, var(--dark-card) 0%, var(--darker-bg) 100%); display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h4>Interactive Map Location</h4>
+                                <p>123 Education Street, Bangalore, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4 text-center">Frequently Asked Questions</h3>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                How quickly do you respond to inquiries?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We typically respond to all inquiries within 24 hours during business days. For urgent matters, please call our support line.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Do you offer career counseling?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we offer free career counseling sessions to help you choose the right course based on your interests, skills, and career goals.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Can I schedule an in-person consultation?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Absolutely! You can schedule an in-person consultation by calling our office or using the booking system on our website.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <% if (typeof message !== "undefined" && message) { %>
+            <div class="alert alert-info alert-dismissible fade show text-center w-75 mx-auto mb-4" role="alert">
+                <strong><%= message %></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+            
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Sumana's Learning Hub</h5>
+                    <p class="mb-0">Empowering students with quality education and skills for the future.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light mx-2 fs-5"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Your Email" style="background-color: var(--dark-card); border-color: rgba(30, 144, 255, 0.2); color: var(--text-light);">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
+            <p class="mb-0">&copy; <%= new Date().getFullYear() %> Sumana's Learning Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form validation and enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    // You can add custom validation here
+                    const inputs = this.querySelectorAll('input, textarea');
+                    let valid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            valid = false;
+                            input.classList.add('is-invalid');
+                        } else {
+                            input.classList.remove('is-invalid');
+                        }
+                    });
+                    
+                    if (!valid) {
+                        e.preventDefault();
+                        // Add shake animation to invalid fields
+                        document.querySelectorAll('.is-invalid').forEach(el => {
+                            el.classList.add('animate__animated', 'animate__headShake');
+                            setTimeout(() => {
+                                el.classList.remove('animate__animated', 'animate__headShake');
+                            }, 1000);
+                        });
+                    }
+                });
+            }
+            
+            // Animate elements on scroll
+            const animatedElements = document.querySelectorAll('.contact-info-card, .contact-form');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
