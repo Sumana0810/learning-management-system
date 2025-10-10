@@ -39,4 +39,6 @@
     app.use("/", require("./routes/User"));
     app.use("/admin", require("./routes/Admin"));
 
-    app.listen(4000, () => console.log("Server running on port 4000"));
+    const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
